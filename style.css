@@ -17,10 +17,23 @@
   --buff: #e2d0a6;            /* TCU Brick Buff — TCU Executive secondary palette */
   --buff-deep: #9c7c40;
 
+  /* Stable "always dark" tokens for decorative surfaces (hero, page-header, cards, buttons)
+     that carry light/white text — kept separate from --purple/--blue/--buff, which
+     intentionally lighten in dark mode for their OTHER job as text/link colors on dark pages.
+     Reusing --purple for both jobs was exactly the bug that made hero text hard to read
+     in dark mode: the background got lighter along with the text color meant to sit on it. */
+  --purple-bg: #4d1979;
+  --purple-bg-deep: #34115a;
+  --blue-bg-deep: #3f6a95;
+  --buff-bg-deep: #9c7c40;
+  --pure-white: #ffffff; /* literal white for text/icons on colored surfaces — --white is the
+                             adaptive card-surface color and goes dark in dark mode, which is
+                             correct for cards but wrong for text that needs to stay white */
+
   /* Gradients — richer 3-stop versions, category-tinted */
-  --gradient-primary: linear-gradient(135deg, var(--purple) 0%, var(--purple-deep) 45%, var(--blue-deep) 100%);
-  --gradient-research: linear-gradient(135deg, var(--blue-deep) 0%, var(--purple) 55%, var(--purple-deep) 100%);
-  --gradient-honors: linear-gradient(135deg, var(--buff-deep) 0%, var(--purple) 45%, var(--purple-deep) 100%);
+  --gradient-primary: linear-gradient(135deg, var(--purple-bg) 0%, var(--purple-bg-deep) 45%, var(--blue-bg-deep) 100%);
+  --gradient-research: linear-gradient(135deg, var(--blue-bg-deep) 0%, var(--purple-bg) 55%, var(--purple-bg-deep) 100%);
+  --gradient-honors: linear-gradient(135deg, var(--buff-bg-deep) 0%, var(--purple-bg) 45%, var(--purple-bg-deep) 100%);
 
   /* Neutrals */
   --ink: #1f1729;             /* near-black w/ warm purple undertone, for headings */
@@ -112,7 +125,7 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: var(--white);
+  background: var(--pure-white);
   box-shadow: var(--shadow-sm);
   transition: transform 0.25s var(--ease);
 }
@@ -170,7 +183,7 @@ img { max-width: 100%; display: block; }
 
 ul { list-style: none; margin: 0; padding: 0; }
 
-::selection { background: var(--purple); color: var(--white); }
+::selection { background: var(--purple-bg); color: var(--pure-white); }
 
 /* Accessible focus ring everywhere */
 a:focus-visible,
@@ -380,8 +393,8 @@ nav.nav-scrolled { box-shadow: 0 4px 20px rgba(31, 23, 41, 0.08); }
   .nav-links.active { max-height: 480px; padding-bottom: 1rem; }
   .nav-links li a { display: block; }
   .nav-links li a.active {
-    background: var(--purple);
-    color: var(--white) !important;
+    background: var(--purple-bg);
+    color: var(--pure-white) !important;
   }
 }
 
@@ -390,7 +403,7 @@ nav.nav-scrolled { box-shadow: 0 4px 20px rgba(31, 23, 41, 0.08); }
   position: relative;
   background:
     radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(155deg, var(--purple) 0%, var(--purple-deep) 62%, #260c40 100%);
+    linear-gradient(155deg, var(--purple-bg) 0%, var(--purple-bg-deep) 62%, #260c40 100%);
   background-size: 24px 24px, 100% 100%;
   overflow: hidden;
   padding: 4.5rem 1.5rem 5rem;
@@ -475,7 +488,7 @@ nav.nav-scrolled { box-shadow: 0 4px 20px rgba(31, 23, 41, 0.08); }
 }
 
 .profile-text h1 {
-  color: var(--white);
+  color: var(--pure-white);
   margin-bottom: 0.3rem;
 }
 
@@ -502,7 +515,7 @@ nav.nav-scrolled { box-shadow: 0 4px 20px rgba(31, 23, 41, 0.08); }
 .hero-badges .badge {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.28);
-  color: var(--white);
+  color: var(--pure-white);
 }
 .hero-badges .badge i { color: var(--buff); }
 
@@ -518,7 +531,7 @@ nav.nav-scrolled { box-shadow: 0 4px 20px rgba(31, 23, 41, 0.08); }
   position: relative;
   background:
     radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(120deg, var(--purple) 0%, var(--purple-deep) 100%);
+    linear-gradient(120deg, var(--purple-bg) 0%, var(--purple-bg-deep) 100%);
   background-size: 22px 22px, 100% 100%;
   padding: 3.2rem 1.5rem 3.6rem;
   overflow: hidden;
@@ -550,7 +563,7 @@ nav.nav-scrolled { box-shadow: 0 4px 20px rgba(31, 23, 41, 0.08); }
   margin: 0 auto;
 }
 
-.page-header h1 { color: var(--white); margin-bottom: 0.5rem; }
+.page-header h1 { color: var(--pure-white); margin-bottom: 0.5rem; }
 
 .breadcrumbs {
   font-family: var(--font-body);
@@ -560,7 +573,7 @@ nav.nav-scrolled { box-shadow: 0 4px 20px rgba(31, 23, 41, 0.08); }
   letter-spacing: 0.03em;
 }
 .breadcrumbs a { color: rgba(255, 255, 255, 0.75); }
-.breadcrumbs a:hover { color: var(--white); }
+.breadcrumbs a:hover { color: var(--pure-white); }
 .breadcrumbs i { margin: 0 0.4em; font-size: 0.7em; }
 
 /* ---------- Card & Section Header ---------- */
@@ -606,7 +619,7 @@ nav.nav-scrolled { box-shadow: 0 4px 20px rgba(31, 23, 41, 0.08); }
   flex-shrink: 0;
   border-radius: 50%;
   background: var(--gradient-primary);
-  color: var(--white);
+  color: var(--pure-white);
   line-height: 1;
   overflow: hidden;
   font-size: 1.15rem;
@@ -644,8 +657,8 @@ button[type="submit"] {
 .primary-btn,
 .download-btn,
 button[type="submit"] {
-  background: linear-gradient(120deg, var(--purple) 0%, var(--purple-deep) 45%, var(--blue-deep) 100%);
-  color: var(--white) !important;
+  background: linear-gradient(120deg, var(--purple-bg) 0%, var(--purple-bg-deep) 45%, var(--blue-bg-deep) 100%);
+  color: var(--pure-white) !important;
   box-shadow: 0 8px 20px -6px rgba(77, 25, 121, 0.45);
   border: none;
   padding: calc(0.85rem + 2px) calc(1.6rem + 2px);
@@ -716,7 +729,7 @@ button[type="submit"]:hover {
   align-items: center;
   justify-content: center;
   background: var(--gradient-primary);
-  color: var(--white);
+  color: var(--pure-white);
   line-height: 1;
   overflow: hidden;
   box-shadow: var(--shadow-sm);
@@ -742,8 +755,8 @@ button[type="submit"]:hover {
   position: absolute;
   top: -100px;
   left: 1rem;
-  background: var(--purple);
-  color: var(--white) !important;
+  background: var(--purple-bg);
+  color: var(--pure-white) !important;
   padding: 0.8rem 1.4rem;
   border-radius: var(--radius-sm);
   font-weight: 700;
@@ -753,7 +766,7 @@ button[type="submit"]:hover {
 }
 .skip-to-content:focus {
   top: 1rem;
-  outline: 2px solid var(--white);
+  outline: 2px solid var(--pure-white);
   outline-offset: 2px;
 }
 
@@ -845,7 +858,7 @@ button[type="submit"]:hover {
   align-items: center;
   justify-content: center;
   background: var(--gradient-primary);
-  color: var(--white);
+  color: var(--pure-white);
   line-height: 1;
   overflow: hidden;
   font-size: 1rem;
@@ -870,7 +883,7 @@ button[type="submit"]:hover {
   align-items: center;
   justify-content: center;
   background: var(--gradient-primary);
-  color: var(--white);
+  color: var(--pure-white);
   line-height: 1;
   overflow: hidden;
   font-size: 1.05rem;
@@ -912,7 +925,7 @@ button[type="submit"]:hover {
   height: 110px;
   border-radius: var(--radius-md);
   background: var(--gradient-primary);
-  color: var(--white);
+  color: var(--pure-white);
   line-height: 1;
   overflow: hidden;
   display: flex;
@@ -995,7 +1008,7 @@ button[type="submit"]:hover {
   border-radius: 50%;
   border: none;
   background: var(--gradient-primary);
-  color: var(--white);
+  color: var(--pure-white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1100,7 +1113,7 @@ button[type="submit"]:hover {
 }
 .copy-citation-btn:hover { border-color: var(--purple); color: var(--purple); background: var(--purple-pale); }
 .copy-citation-btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
-.copy-citation-btn.copied { border-color: var(--blue-deep); color: var(--white); background: var(--blue-deep); }
+.copy-citation-btn.copied { border-color: var(--blue-bg-deep); color: var(--pure-white); background: var(--blue-bg-deep); }
 
 /* ---------- Photo lightbox ---------- */
 .media-thumb[data-lightbox-img] { cursor: zoom-in; }
@@ -1137,7 +1150,7 @@ button[type="submit"]:hover {
   width: 36px; height: 36px;
   display: flex; align-items: center; justify-content: center;
   background: rgba(31, 23, 41, 0.6);
-  color: var(--white);
+  color: var(--pure-white);
   border: none;
   border-radius: 50%;
   font-size: 1.3rem;
@@ -1146,7 +1159,7 @@ button[type="submit"]:hover {
   transition: background 0.2s var(--ease);
 }
 .photo-lightbox-close:hover { background: rgba(31, 23, 41, 0.85); }
-.photo-lightbox-close:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
+.photo-lightbox-close:focus-visible { outline: 2px solid var(--pure-white); outline-offset: 2px; }
 
 @media (max-width: 640px) {
   .stat-modal { padding: 1.4rem 1.3rem 1.6rem; max-height: 85vh; }
@@ -1203,8 +1216,8 @@ button[type="submit"]:hover {
   font-weight: 700;
   padding: 0.25rem 0.65rem;
   border-radius: 999px;
-  background: var(--blue);
-  color: var(--white);
+  background: var(--blue-bg-deep);
+  color: var(--pure-white);
   white-space: nowrap;
 }
 .rotation-item p { font-size: 0.9rem; margin: 0; }
@@ -1220,7 +1233,7 @@ button[type="submit"]:hover {
   align-items: center;
   justify-content: center;
   background: var(--gradient-primary);
-  color: var(--white);
+  color: var(--pure-white);
   line-height: 1;
   overflow: hidden;
   font-size: 1.1rem;
@@ -1258,7 +1271,7 @@ button[type="submit"]:hover {
   align-items: center;
   justify-content: center;
   background: var(--gradient-primary);
-  color: var(--white);
+  color: var(--pure-white);
   line-height: 1;
   overflow: hidden;
   font-size: 0.95rem;
@@ -1323,7 +1336,7 @@ button[type="submit"]:hover {
   align-items: center;
   justify-content: center;
   background: var(--gradient-primary);
-  color: var(--white);
+  color: var(--pure-white);
   line-height: 1;
   overflow: hidden;
   font-size: 0.9rem;
@@ -1333,7 +1346,7 @@ button[type="submit"]:hover {
 .contact-item p { color: var(--slate); font-size: 0.93rem; }
 
 .linkedin-card {
-  background: linear-gradient(150deg, var(--purple), var(--purple-deep));
+  background: linear-gradient(150deg, var(--purple-bg), var(--purple-bg-deep));
   border-radius: var(--radius-md);
   padding: 2.2rem 1.8rem;
   text-align: center;
@@ -1391,7 +1404,7 @@ button[type="submit"]:hover {
   height: 26px;
   border-radius: 50%;
   background: var(--gradient-primary);
-  color: var(--white);
+  color: var(--pure-white);
   line-height: 1;
   overflow: hidden;
   display: flex;
@@ -1400,7 +1413,7 @@ button[type="submit"]:hover {
   font-size: 0.75rem;
   transition: transform 0.25s var(--ease);
 }
-.faq-item.active .faq-question i { background: var(--buff-deep); color: var(--white); }
+.faq-item.active .faq-question i { background: var(--buff-bg-deep); color: var(--pure-white); }
 .faq-answer {
   max-height: 0;
   overflow: hidden;
@@ -1447,6 +1460,11 @@ button[type="submit"]:hover {
   border-color: var(--blue);
   box-shadow: 0 0 0 3px rgba(94, 136, 180, 0.2);
 }
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--slate-light);
+  opacity: 1;
+}
 .form-group textarea { resize: vertical; min-height: 110px; }
 
 /* ---------- Footer ---------- */
@@ -1473,7 +1491,7 @@ footer p { font-size: 0.85rem; margin-bottom: 1rem; }
   font-weight: 600;
 }
 .footer-link i { font-size: 1.15rem; color: var(--buff); }
-.footer-link.swing:hover { color: var(--white) !important; }
+.footer-link.swing:hover { color: var(--pure-white) !important; }
 .footer-link.swing:hover i { animation: swing 0.6s var(--ease); }
 @keyframes swing {
   20% { transform: rotate(12deg); }
@@ -1547,7 +1565,7 @@ footer p { font-size: 0.85rem; margin-bottom: 1rem; }
   margin: 0 auto;
   padding: 1.6rem 1.8rem;
 }
-.landing-nav .logo { color: var(--white) !important; }
+.landing-nav .logo { color: var(--pure-white) !important; }
 .landing-nav .skip-link {
   font-size: 0.82rem;
   font-weight: 600;
@@ -1557,13 +1575,13 @@ footer p { font-size: 0.85rem; margin-bottom: 1rem; }
   padding: 0.45rem 1rem;
   transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
 }
-.landing-nav .skip-link:hover { border-color: rgba(255, 255, 255, 0.8); color: var(--white) !important; }
+.landing-nav .skip-link:hover { border-color: rgba(255, 255, 255, 0.8); color: var(--pure-white) !important; }
 .landing-nav .theme-toggle {
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.35);
 }
 .landing-nav .theme-toggle:hover { background: rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.6); }
-.landing-nav .theme-toggle::before { background: var(--white); }
+.landing-nav .theme-toggle::before { background: var(--pure-white); }
 
 .landing-hero {
   position: relative;
@@ -1577,9 +1595,9 @@ footer p { font-size: 0.85rem; margin-bottom: 1rem; }
   padding: 7rem 1.5rem 4rem;
   background:
     radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(165deg, var(--purple) 0%, var(--purple-deep) 55%, #1c0836 100%);
+    linear-gradient(165deg, var(--purple-bg) 0%, var(--purple-bg-deep) 55%, #1c0836 100%);
   background-size: 24px 24px, 100% 100%;
-  color: var(--white);
+  color: var(--pure-white);
 }
 .landing-hero::before {
   content: "";
@@ -1603,7 +1621,7 @@ footer p { font-size: 0.85rem; margin-bottom: 1rem; }
 .landing-hero-inner { position: relative; z-index: 1; max-width: 760px; }
 .landing-hero .eyebrow { color: var(--buff); display: block; margin-bottom: 1.1rem; }
 .landing-hero h1 {
-  color: var(--white);
+  color: var(--pure-white);
   font-size: clamp(2.8rem, 2.1rem + 4vw, 5.2rem);
   margin-bottom: 1rem;
 }
@@ -1664,7 +1682,7 @@ footer p { font-size: 0.85rem; margin-bottom: 1rem; }
 .landing-stat strong {
   font-family: var(--font-display);
   font-size: 1.6rem;
-  color: var(--white);
+  color: var(--pure-white);
   line-height: 1;
 }
 .landing-stat span {
@@ -1702,11 +1720,10 @@ footer p { font-size: 0.85rem; margin-bottom: 1rem; }
   font-family: var(--font-display);
   font-size: 1.02rem;
   font-weight: 700;
-  color: var(--slate);
-  opacity: 0.72;
-  transition: opacity 0.2s var(--ease);
+  color: var(--slate-light);
+  transition: color 0.2s var(--ease);
 }
-.as-featured-outlets span:hover { opacity: 1; }
+.as-featured-outlets span:hover { color: var(--purple); }
 
 .scroll-cue {
   position: absolute;
@@ -1792,7 +1809,7 @@ footer p { font-size: 0.85rem; margin-bottom: 1rem; }
   letter-spacing: 0.08em;
   text-transform: uppercase;
   background: rgba(31, 23, 41, 0.72);
-  color: var(--white);
+  color: var(--pure-white);
   padding: 0.3rem 0.65rem;
   border-radius: 999px;
 }
@@ -1912,7 +1929,7 @@ footer p { font-size: 0.85rem; margin-bottom: 1rem; }
   align-items: center;
   justify-content: center;
   background: var(--gradient-primary);
-  color: var(--white);
+  color: var(--pure-white);
   font-size: 0.9rem;
 }
 .related-page-link:hover {
