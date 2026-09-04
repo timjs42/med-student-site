@@ -2216,12 +2216,6 @@ button[type="submit"]:active { transform: scale(0.97); }
 }
 .linkedin-card:hover .profile-img, .about-image:hover .profile-img { transform: scale(1.04); }
 
-/* ---- Ambient hero gradient drift (very slow, purely decorative) ---- */
-@keyframes drift {
-  0%, 100% { background-position: 0% 0%, 0% 0%; }
-  50%      { background-position: 4% 3%, -3% -2%; }
-}
 .hero-area::before, .landing-hero::before {
   background-size: 140% 140%;
-  animation: drift 22s ease-in-out infinite;
 }
